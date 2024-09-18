@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -51,7 +52,13 @@ public class DemoClass4 {
            for (int i : res) {
             System.out.println(i);
            }
-            
+
+           ResultSet resultSet = statement.executeQuery("SELECT * FROM person");
+           while (resultSet.next()) {
+            System.out.println("roll: "+resultSet.getInt("roll")+ " name: "+resultSet.getString("name"));
+           }
+
+            resultSet.close();
             con.close();
             statement.close();
 
